@@ -23,7 +23,7 @@ public class PersonaController : ControllerBase
         var persona = await _personaService.GetByIdAsync(id);
         if (persona is null)
         {
-            return NotFound();
+            return NotFound("Persona no encontrada.");
         }
         return Ok(persona);
     }
@@ -41,7 +41,7 @@ public class PersonaController : ControllerBase
         {
             return NotFound();
         }
-        return Ok();
+        return Ok("Persona actualizada correctamente.");
     }
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
@@ -51,6 +51,6 @@ public class PersonaController : ControllerBase
         {
             return NotFound();
         }
-        return Ok();
+        return NoContent();
     }
 }

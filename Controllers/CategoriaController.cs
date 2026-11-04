@@ -25,7 +25,7 @@ public class CategoriaController : ControllerBase
         var categoria = await _categoriaService.GetByIdAsync(id);
         if (categoria is null)
         {
-            return NotFound();
+            return NotFound("Categoria no encontrada");
         }
         return Ok(categoria);
     }
@@ -43,7 +43,7 @@ public class CategoriaController : ControllerBase
         {
             return NotFound();
         }
-        return Ok();
+        return Ok("La categoria fue actualizada correctamente.");
     }
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
@@ -53,6 +53,6 @@ public class CategoriaController : ControllerBase
         {
             return NotFound();
         }
-        return Ok();
+        return NoContent();
     }
 }

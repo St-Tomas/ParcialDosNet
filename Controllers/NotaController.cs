@@ -24,7 +24,7 @@ public class NotaController : ControllerBase
         var nota = await _notaService.GetByIdAsync(id);
         if (nota is null)
         {
-            return NotFound();
+            return NotFound("Nota no encontrada.");
         }
         return Ok(nota);
     }
@@ -40,7 +40,7 @@ public class NotaController : ControllerBase
         var updated = await _notaService.UpdateAsync(id, nota);
         if (!updated)
         {
-            return NotFound("Nota no encontrada.");
+            return NotFound();
         }
         return Ok("Actualizado correctamente.");
     }
@@ -50,7 +50,7 @@ public class NotaController : ControllerBase
         var deleted = await _notaService.DeleteAsync(id);
         if (!deleted)
         {
-            return NotFound("Nota no encontrada.");
+            return NotFound();
         }
         return NoContent();
     }
