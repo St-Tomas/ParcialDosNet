@@ -3,7 +3,7 @@ using ApiEfCore.Context;
 using ApiEfCore.Models;
 using Microsoft.EntityFrameworkCore;
 
-public class NotaService
+public class NotaService : INotaService
 {
     private readonly AppDbContext _dbContext;
     public NotaService(AppDbContext dbContext)

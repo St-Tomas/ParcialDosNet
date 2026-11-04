@@ -44,6 +44,10 @@ namespace ApiEfCore.Migrations
                     b.Property<bool>("Completa")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("PersonaId")
                         .HasColumnType("INTEGER");
 
