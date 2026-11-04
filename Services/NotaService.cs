@@ -32,6 +32,10 @@ public class NotaService : INotaService
             return false; 
         }
         existing.Completa = nota.Completa;
+        existing.CategoriaId = nota.CategoriaId;
+        existing.Descripcion = nota.Descripcion;
+        existing.Titulo = nota.Titulo;
+        existing.PersonaId = nota.PersonaId;
         await _dbContext.SaveChangesAsync();
         return true;
     }
