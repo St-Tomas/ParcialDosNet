@@ -9,10 +9,8 @@ public class Nota
     [Required]
     [MaxLength(50)]
     public string Titulo { get; set; } = string.Empty;
-    
+    public string Descripcion {get; set;}
     public bool Completa {get; set;}
-    
     public int CategoriaId { get; set; }
     public int PersonaId { get; set; }
-    
 }
