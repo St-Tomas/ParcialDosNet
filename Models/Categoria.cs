@@ -8,5 +8,6 @@ public class Categoria
     
     [Required]
     [MaxLength(30)]
-    public string Nombre { get; set; } = string.Empty;
+    public string Nombre { get; set; } = "Sin categoría";
+    public List<Nota> Notas { get; set; } = new();
 }

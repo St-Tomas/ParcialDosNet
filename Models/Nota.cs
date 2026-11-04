@@ -11,6 +11,8 @@ public class Nota
     public string Titulo { get; set; } = string.Empty;
     public string Descripcion {get; set;} = string.Empty;
     public bool Completa {get; set;}
-    public int CategoriaId { get; set; }
+    public int? CategoriaId { get; set; }
     public int PersonaId { get; set; }
+    public Persona? Persona { get; set; }
+    public Categoria? Categoria { get; set; }
 }

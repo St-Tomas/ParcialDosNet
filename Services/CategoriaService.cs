@@ -50,7 +50,6 @@ public class CategoriaService : ICategoriaService
         {
             return false;
         }
-
         _dbContext.Categorias.Remove(categoria);
         await _dbContext.SaveChangesAsync();
         return true;

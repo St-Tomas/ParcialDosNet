@@ -42,7 +42,7 @@ public class NotaController : ControllerBase
         {
             return NotFound("Nota no encontrada.");
         }
-        return Ok();
+        return Ok("Actualizado correctamente.");
     }
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)

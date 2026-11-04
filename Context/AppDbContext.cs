@@ -12,4 +12,20 @@ public class AppDbContext : DbContext
     {
         
     }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Nota>()
+            .HasOne(n => n.Persona)
+            .WithMany(p => p.Notas)
+            .HasForeignKey(n => n.PersonaId)
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        modelBuilder.Entity<Nota>()
+            .HasOne(n => n.Categoria)
+            .WithMany(c => c.Notas)
+            .HasForeignKey(n => n.CategoriaId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        base.OnModelCreating(modelBuilder);
+    }
 }

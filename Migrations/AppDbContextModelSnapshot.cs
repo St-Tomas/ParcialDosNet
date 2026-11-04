@@ -38,7 +38,7 @@ namespace ApiEfCore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CategoriaId")
+                    b.Property<int?>("CategoriaId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("Completa")
@@ -58,6 +58,10 @@ namespace ApiEfCore.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoriaId");
+
+                    b.HasIndex("PersonaId");
+
                     b.ToTable("Notas");
                 });
 
@@ -75,6 +79,34 @@ namespace ApiEfCore.Migrations
                     b.HasKey("PersonaId");
 
                     b.ToTable("Personas");
+                });
+
+            modelBuilder.Entity("ApiEfCore.Models.Nota", b =>
+                {
+                    b.HasOne("ApiEfCore.Models.Categoria", "Categoria")
+                        .WithMany("Notas")
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("ApiEfCore.Models.Persona", "Persona")
+                        .WithMany("Notas")
+                        .HasForeignKey("PersonaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
+
+                    b.Navigation("Persona");
+                });
+
+            modelBuilder.Entity("ApiEfCore.Models.Categoria", b =>
+                {
+                    b.Navigation("Notas");
+                });
+
+            modelBuilder.Entity("ApiEfCore.Models.Persona", b =>
+                {
+                    b.Navigation("Notas");
                 });
 #pragma warning restore 612, 618
         }

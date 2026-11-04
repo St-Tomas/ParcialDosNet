@@ -2,7 +2,6 @@ namespace ApiEfCore.Services;
 using ApiEfCore.Context;
 using ApiEfCore.Models;
 using Microsoft.EntityFrameworkCore;
-
 public class NotaService : INotaService
 {
     private readonly AppDbContext _dbContext;
@@ -31,10 +30,23 @@ public class NotaService : INotaService
         {
             return false; 
         }
+        var persona = await _dbContext.Personas.FindAsync(nota.PersonaId);
+        if (persona is null)
+        {
+            return false;
+        }
+        if (nota.CategoriaId != null)
+        {
+            var categoria = await _dbContext.Categorias.FindAsync(nota.CategoriaId);
+            if (categoria is null)
+            {
+                return false;
+            }
+        }
+        existing.Titulo = nota.Titulo;
+        existing.Descripcion = nota.Descripcion;
         existing.Completa = nota.Completa;
         existing.CategoriaId = nota.CategoriaId;
-        existing.Descripcion = nota.Descripcion;
-        existing.Titulo = nota.Titulo;
         existing.PersonaId = nota.PersonaId;
         await _dbContext.SaveChangesAsync();
         return true;
