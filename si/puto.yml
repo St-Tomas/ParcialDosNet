@@ -1,0 +1,25 @@
+info:
+  name: puto
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:5245/api/nota
+  body:
+    type: json
+    data: |-
+      {
+        "titulo": "Mi nota",
+        "descripcion": "Descripción de prueba",
+        "completa": true,
+        "personaId": 3,
+        "categoriaId": 4
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

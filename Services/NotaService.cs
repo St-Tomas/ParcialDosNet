@@ -19,6 +19,16 @@ public class NotaService : INotaService
     }
     public async Task<Nota> CreateAsync(Nota nota)
     {
+        var persona = await _dbContext.Personas.FindAsync(nota.PersonaId);
+        var categoria = await _dbContext.Categorias.FindAsync(nota.CategoriaId);
+        if(persona is null)
+        {
+            return null;
+        }
+        if(categoria is null)
+        {
+            return null;
+        }
         _dbContext.Notas.Add(nota);
         await _dbContext.SaveChangesAsync();
         return nota;

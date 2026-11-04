@@ -32,6 +32,10 @@ public class NotaController : ControllerBase
     public async Task<ActionResult<Nota>> Create(Nota nota)
     {
         var created = await _notaService.CreateAsync(nota);
+    if (created is null)
+    {
+        return BadRequest("La persona o categoría no existen.");
+    }
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
     [HttpPut("{id}")]
